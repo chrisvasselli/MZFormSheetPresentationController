@@ -86,7 +86,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
     CGRect originalFormSheetRect = formSheetRect;
-    formSheetRect.origin.y = -[UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = -formSheetController.view.window.bounds.size.height;
     formSheetController.view.frame = formSheetRect;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
@@ -99,7 +99,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.y = -[UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = -formSheetController.view.window.bounds.size.height;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -121,7 +121,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
     CGRect originalFormSheetRect = formSheetRect;
-    formSheetRect.origin.y = [UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = formSheetController.view.window.bounds.size.height;
     formSheetController.view.frame = formSheetRect;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
@@ -134,7 +134,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.y = [UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = formSheetController.view.window.bounds.size.height;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         delay:0
         options:UIViewAnimationOptionCurveEaseIn
@@ -158,7 +158,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
     CGRect originalFormSheetRect = formSheetRect;
-    formSheetRect.origin.x = -[UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = -formSheetController.view.window.bounds.size.width;
     formSheetController.view.frame = formSheetRect;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
@@ -171,7 +171,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.x = -[UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = -formSheetController.view.window.bounds.size.width;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -193,7 +193,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
     CGRect originalFormSheetRect = formSheetRect;
-    formSheetRect.origin.x = [UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = formSheetController.view.window.bounds.size.width;
     formSheetController.view.frame = formSheetRect;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
@@ -206,7 +206,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.x = [UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = formSheetController.view.window.bounds.size.width;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -229,7 +229,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
     NSLog(@"entryFormSheetControllerTransition");
     CGFloat y = formSheetController.view.center.y;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
-    animation.values = @[ @(y - [UIScreen mainScreen].bounds.size.height), @(y + 20), @(y - 10), @(y) ];
+    animation.values = @[ @(y - formSheetController.view.window.bounds.size.height), @(y + 20), @(y - 10), @(y) ];
     animation.keyTimes = @[ @(0), @(0.5), @(0.75), @(1) ];
     animation.timingFunctions = @[ [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut] ];
     animation.duration = MZPresentationTransitionDefaultBounceDuration;
@@ -240,7 +240,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.y = -[UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = -formSheetController.view.window.bounds.size.height;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
                      animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -263,7 +263,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
     NSLog(@"entryFormSheetControllerTransition");
     CGFloat y = formSheetController.view.center.y;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
-    animation.values = @[ @(y + [UIScreen mainScreen].bounds.size.height), @(y - 20), @(y + 10), @(y) ];
+    animation.values = @[ @(y + formSheetController.view.window.bounds.size.height), @(y - 20), @(y + 10), @(y) ];
     animation.keyTimes = @[ @(0), @(0.5), @(0.75), @(1) ];
     animation.timingFunctions = @[ [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut] ];
     animation.duration = MZPresentationTransitionDefaultBounceDuration;
@@ -274,7 +274,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.y = [UIScreen mainScreen].bounds.size.height;
+    formSheetRect.origin.y = formSheetController.view.window.bounds.size.height;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
                      animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -296,7 +296,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGFloat x = formSheetController.view.center.x;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-    animation.values = @[ @(x - [UIScreen mainScreen].bounds.size.width), @(x + 20), @(x - 10), @(x) ];
+    animation.values = @[ @(x - formSheetController.view.window.bounds.size.width), @(x + 20), @(x - 10), @(x) ];
     animation.keyTimes = @[ @(0), @(0.5), @(0.75), @(1) ];
     animation.timingFunctions = @[ [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut] ];
     animation.duration = MZPresentationTransitionDefaultDropDownDuration;
@@ -307,7 +307,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.x = -[UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = -formSheetController.view.window.bounds.size.width;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -329,7 +329,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGFloat x = formSheetController.view.center.x;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-    animation.values = @[ @(x + [UIScreen mainScreen].bounds.size.width), @(x - 20), @(x + 10), @(x) ];
+    animation.values = @[ @(x + formSheetController.view.window.bounds.size.width), @(x - 20), @(x + 10), @(x) ];
     animation.keyTimes = @[ @(0), @(0.5), @(0.75), @(1) ];
     animation.timingFunctions = @[ [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut] ];
     animation.duration = MZPresentationTransitionDefaultBounceDuration;
@@ -340,7 +340,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGRect formSheetRect = formSheetController.view.frame;
-    formSheetRect.origin.x = [UIScreen mainScreen].bounds.size.width;
+    formSheetRect.origin.x = formSheetController.view.window.bounds.size.width;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         animations:^{
                          formSheetController.view.frame = formSheetRect;
@@ -439,7 +439,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 - (void)entryFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGFloat y = formSheetController.view.center.y;
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"position.y"];
-    animation.values = @[ @(y - [UIScreen mainScreen].bounds.size.height), @(y + 20), @(y - 10), @(y) ];
+    animation.values = @[ @(y - formSheetController.view.window.bounds.size.height), @(y + 20), @(y - 10), @(y) ];
     animation.keyTimes = @[ @(0), @(0.5), @(0.75), @(1) ];
     animation.timingFunctions = @[ [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut] ];
     animation.duration = MZPresentationTransitionDefaultDropDownDuration;
@@ -450,7 +450,7 @@ CGFloat const MZFormSheetPresentationViewControllerDefaultAnimationDuration = 0.
 
 - (void)exitFormSheetControllerTransition:(UIViewController *)formSheetController completionHandler:(MZTransitionCompletionHandler)completionHandler {
     CGPoint point = formSheetController.view.center;
-    point.y += [UIScreen mainScreen].bounds.size.height;
+    point.y += formSheetController.view.window.bounds.size.height;
     [UIView animateWithDuration:MZFormSheetPresentationViewControllerDefaultAnimationDuration
         delay:0
         options:UIViewAnimationOptionCurveEaseIn
