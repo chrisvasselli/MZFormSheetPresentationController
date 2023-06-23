@@ -35,7 +35,7 @@
 @implementation MZFormSheetPresentationViewControllerCustomView
 
 - (instancetype)initWithViewController:(MZFormSheetPresentationViewController *)viewController {
-    if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
+    if (self = [super initWithFrame:viewController.view.window.bounds]) {
         self.viewController = viewController;
     }
     return self;
