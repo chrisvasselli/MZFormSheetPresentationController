@@ -316,20 +316,20 @@
             sourceViewFrame.origin.x = -sourceViewFrame.size.width;
             
         } else if (self.currentDirection == MZFormSheetPanGestureDismissDirectionRight) {
-            sourceViewFrame.origin.x = [UIScreen mainScreen].bounds.size.width;
+            sourceViewFrame.origin.x = sourceView.window.bounds.size.width;
             
         } else if (self.currentDirection == MZFormSheetPanGestureDismissDirectionUp) {
             sourceViewFrame.origin.y = -sourceViewFrame.size.height;
             
         } else if (self.currentDirection == MZFormSheetPanGestureDismissDirectionDown) {
-            sourceViewFrame.origin.y = [UIScreen mainScreen].bounds.size.height;
+            sourceViewFrame.origin.y = sourceView.window.bounds.size.height;
         }
         
     } else {
         if (CGRectGetMidY(sourceViewFrame) < transitionContext.containerView.frame.size.height/2) {
             sourceViewFrame.origin.y = -sourceViewFrame.size.height;
         } else {
-            sourceViewFrame.origin.y = [UIScreen mainScreen].bounds.size.height;
+            sourceViewFrame.origin.y = sourceView.window.bounds.size.height;
         }
     }
 

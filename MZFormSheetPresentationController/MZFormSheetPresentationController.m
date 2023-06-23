@@ -234,7 +234,7 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
 #if TARGET_OS_TV || MZ_APP_EXTENSIONS
     return 0;
 #else
-    return [UIApplication sharedApplication].statusBarFrame.size.height;
+    return self.containerView.window.windowScene.statusBarManager.statusBarFrame.size.height;
 #endif
 }
 
@@ -242,7 +242,7 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
 #if TARGET_OS_TV || MZ_APP_EXTENSIONS
     return self.landscapeTopInset;
 #else
-    if (UIInterfaceOrientationIsPortrait([UIApplication sharedApplication].statusBarOrientation)) {
+    if (UIInterfaceOrientationIsPortrait(self.containerView.window.windowScene.interfaceOrientation)) {
         return self.portraitTopInset + [self yCoordinateBelowStatusBar];
     } else {
         return self.landscapeTopInset + [self yCoordinateBelowStatusBar];
@@ -457,8 +457,8 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
 - (void)willShowKeyboardNotification:(NSNotification *)notification __TVOS_PROHIBITED {
     CGRect screenRect = [[notification userInfo][UIKeyboardFrameEndUserInfoKey] CGRectValue];
     
-    screenRect.size.height = [UIScreen mainScreen].bounds.size.height - screenRect.size.height;
-    screenRect.size.width = [UIScreen mainScreen].bounds.size.width;
+    screenRect.size.height = self.containerView.window.bounds.size.height - screenRect.size.height;
+    screenRect.size.width = self.containerView.window.bounds.size.width;
     screenRect.origin.y = 0;
     
     self.screenFrameWhenKeyboardVisible = [NSValue valueWithCGRect:screenRect];
@@ -472,7 +472,9 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
                               delay:0
                             options:UIViewAnimationOptionBeginFromCurrentState
                          animations:^{
+#if !TARGET_OS_XR
                              [UIView setAnimationCurve:curve];
+#endif
                              [self setupFormSheetViewControllerFrame];
                          } completion:nil];
     }
@@ -489,7 +491,9 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
+#if !TARGET_OS_XR
                          [UIView setAnimationCurve:curve];
+#endif
                          [self setupFormSheetViewControllerFrame];
                      } completion:nil];
 }
