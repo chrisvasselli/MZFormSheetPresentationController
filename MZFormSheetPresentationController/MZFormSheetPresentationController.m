@@ -468,7 +468,7 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-#if !TARGET_OS_XR
+#if !TARGET_OS_VISION
                          [UIView setAnimationCurve:curve];
 #endif
                          [self setupFormSheetViewControllerFrame];
@@ -486,7 +486,7 @@ CGFloat const MZFormSheetPresentationControllerDefaultAboveKeyboardMargin = 20;
                           delay:0
                         options:UIViewAnimationOptionBeginFromCurrentState
                      animations:^{
-#if !TARGET_OS_XR
+#if !TARGET_OS_VISION
                          [UIView setAnimationCurve:curve];
 #endif
                          [self setupFormSheetViewControllerFrame];
